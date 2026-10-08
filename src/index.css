@@ -1,0 +1,219 @@
+/* ===================================================
+   Global Reset & Base Styles
+=================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #f5f6fa;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+/* ===================================================
+   Page Layout — centres card vertically and horizontally
+=================================================== */
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+/* ===================================================
+   Card
+=================================================== */
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.card-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+}
+
+.card-subtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 28px;
+}
+
+/* Row used on the details page to put title and logout side-by-side */
+.card-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ===================================================
+   Input Field
+=================================================== */
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  background: #fafafa;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #4f46e5;
+  background: #ffffff;
+}
+
+/* Red border when the field has an error */
+.input-field--error {
+  border-color: #ef4444;
+}
+
+/* Wrapper that positions the eye toggle inside the input */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Extra right padding so typed text doesn't overlap the Show/Hide button */
+.input-field--with-icon {
+  padding-right: 56px;
+}
+
+/* Show/Hide text button — sits flush on the right inside the input */
+.eye-toggle {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4f46e5;
+  padding: 0;
+  line-height: 1;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.input-error {
+  font-size: 0.78rem;
+  color: #ef4444;
+  margin-top: 5px;
+}
+
+/* ===================================================
+   Buttons
+=================================================== */
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+/* Primary — full-width, used for Register / Validate */
+.btn-primary {
+  width: 100%;
+  background-color: #4f46e5;
+  color: #ffffff;
+  margin-top: 6px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #4338ca;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Secondary — compact, used for Logout */
+.btn-secondary {
+  background-color: transparent;
+  color: #4f46e5;
+  border: 1.5px solid #4f46e5;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+}
+
+.btn-secondary:hover {
+  background-color: #eef2ff;
+}
+
+/* ===================================================
+   Messages
+=================================================== */
+.firebase-error {
+  font-size: 0.85rem;
+  color: #ef4444;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.success-message {
+  font-size: 0.9rem;
+  color: #16a34a;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.loading-text {
+  text-align: center;
+  color: #6b7280;
+  padding: 40px;
+}
+
+/* ===================================================
+   Responsive — wider screens (tablet / desktop)
+=================================================== */
+@media (min-width: 480px) {
+  .card {
+    padding: 40px 36px;
+  }
+
+  .card-title {
+    font-size: 1.8rem;
+  }
+}
