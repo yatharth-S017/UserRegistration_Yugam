@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
 import InputField from "../components/InputField";
-import { validateName, validateGmailEmail, validatePassword } from "../utils/validation";
+import { validateName, validateEmail, validatePassword } from "../utils/validation";
 
 // Map Firebase error codes to friendly messages
 function getFriendlyError(code) {
@@ -48,7 +48,7 @@ function Register() {
   function validate() {
     return {
       name: validateName(name),
-      email: validateGmailEmail(email),   // Registration requires Gmail only
+      email: validateEmail(email),   // Gmail-only; same function used on both pages
       password: validatePassword(password),
     };
   }

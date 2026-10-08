@@ -1,6 +1,5 @@
 // Validation rules and functions for all form fields
-// validateGmailEmail  — used on the Registration page (Gmail only)
-// validateEmail       — used on the Details page (any valid email format)
+// validateEmail — used on BOTH the Registration page and the Details page (Gmail only)
 
 // Only letters and spaces — no numbers or special characters
 export function validateName(value) {
@@ -26,35 +25,33 @@ export function validateMobile(value) {
   return "";
 }
 
-// Letters and numbers, with at most ONE special character from: _ - . @
+// Letters and/or numbers, with at most ONE special character of any kind.
+// Spaces are not allowed. The username must have at least one letter or digit.
 export function validateUsername(value) {
   if (!value.trim()) return "Username is required.";
 
-  // Count how many special characters are present
-  const specialChars = value.match(/[_\-.@]/g) || [];
+  // Reject spaces anywhere in the username
+  if (/\s/.test(value))
+    return "Username can contain letters, numbers, and at most one special character.";
+
+  // Count characters that are NOT a letter or digit — these are special characters
+  const specialChars = value.match(/[^A-Za-z0-9]/g) || [];
   if (specialChars.length > 1)
-    return "Username can contain letters, numbers and at most one special character.";
+    return "Username can contain letters, numbers, and at most one special character.";
 
-  // Allow only letters, numbers, and the listed special characters
-  if (!/^[A-Za-z0-9_\-.@]+$/.test(value))
-    return "Username can contain letters, numbers and at most one special character.";
+  // Must contain at least one letter or number (e.g. reject "@" or "!" alone)
+  if (!/[A-Za-z0-9]/.test(value))
+    return "Username can contain letters, numbers, and at most one special character.";
 
   return "";
 }
 
-// Gmail-only email check — used on the Registration page
-export function validateGmailEmail(value) {
-  if (!value.trim()) return "Email is required.";
-  if (!/^[^\s@]+@gmail\.com$/.test(value))
-    return "Please enter a valid Gmail address.";
-  return "";
-}
-
-// Generic email format check — used on the Details/Validation page
+// Gmail-only email check — used on both the Registration and Details pages.
+// Case-insensitive so "ABC@GMAIL.COM" is also accepted.
 export function validateEmail(value) {
   if (!value.trim()) return "Email is required.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
-    return "Please enter a valid email address.";
+  if (!/^[^\s@]+@gmail\.com$/i.test(value))
+    return "Please enter a valid Gmail address.";
   return "";
 }
 
